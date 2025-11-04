@@ -1,0 +1,15 @@
+//fixed capacity by using macro funtion called CAP
+#include<stdio.h>
+#define CAP 10
+void array(int a[CAP],int n){
+    int i;
+    for(i=0;i<n&&i<CAP;i++){
+    a[i]=i;
+    printf("%d ",a[i]);
+    }
+}
+int main(){
+    int i,n=100;
+   int  a[CAP];
+    array(a,n);
+}
