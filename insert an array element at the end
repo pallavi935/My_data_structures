@@ -1,0 +1,15 @@
+#include<stdio.h>
+#define CAP 10
+int main(){
+    int a[]={1,2,3,4,5};
+    int n=5,i;
+   int value=40;
+    if(n<CAP){
+    a[n]=value;
+    n++;
+    for(i=0;i<n;i++)
+    printf("%d " ,a[i]);
+    }
+    else
+    printf("Array is full\n");
+}
