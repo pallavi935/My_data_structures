@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/* 1 */
+void q1() {
+    int N; scanf("%d", &N);
+    int *a = malloc(N * sizeof(int));
+    for (int i = 0; i < N; i++) scanf("%d", a + i);
+    int sum = 0, max = *a;
+    for (int *p = a; p < a + N; p++) {
+        sum += *p;
+        if (*p > max) max = *p;
+    }
+    printf("Sum=%d Max=%d\n", sum, max);
+    free(a);
+}
+
+/* 2 */
+char* my_strdup(char *src) {
+    int len = strlen(src) + 1;
+    char *dup = malloc(len);
+    char *d = dup;
+    while ((*d++ = *src++));
+    return dup;
+}
+
+/* 3 */
+void q3() {
+    int R, C; scanf("%d%d", &R, &C);
+    int *m = malloc(R * C * sizeof(int));
+    for (int i = 0; i < R * C; i++) scanf("%d", m + i);
+    int *t;
+    if (R != C) t = malloc(C * R * sizeof(int)); else t = m;
+    for (int i = 0; i < R; i++)
+        for (int j = 0; j < C; j++)
+            t[j * R + i] = m[i * C + j];
+    for (int i = 0; i < C; i++) {
+        for (int j = 0; j < R; j++) printf("%d ", t[i * R + j]);
+        printf("\n");
+    }
+    if (R != C) free(t);
+    free(m);
+}
+
+/* 4 */
+typedef struct {
+    int *data;
+    int size;
+    int cap;
+} DynArr;
+
+void init(DynArr *a) {
+    a->size = 0;
+    a->cap = 2;
+    a->data = malloc(a->cap * sizeof(int));
+}
+
+void push(DynArr *a, int val) {
+    if (a->size == a->cap) {
+        a->cap *= 2;
+        a->data = realloc(a->data, a->cap * sizeof(int));
+    }
+    a->data[a->size++] = val;
+}
+
+void freeArr(DynArr *a) { free(a->data); }
+
+/* 5 */
+char* getLine() {
+    char *str = NULL;
+    int c, len = 0;
+    while ((c = getchar()) != '\n' && c != EOF) {
+        str = realloc(str, len + 2);
+        str[len++] = c;
+    }
+    if (str) str[len] = '\0';
+    return str;
+}
+
+/* 6 */
+typedef struct Node {
+    int val;
+    struct Node *next;
+} Node;
+
+void deleteKth
